@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components' ;
 import Car from '../images/Car.svg'; 
 
@@ -31,17 +32,18 @@ const HeadStyle = styled.div`
 `;
 
 const Header = () => {
+    const navigate = useNavigate();
     return (
         <HeadStyle>
             <ElementFlex>
-            <Logo>ShortRoutes <img src={Car} alt="Car" /></Logo>
-                <Element>
+            <Logo onClick={() => navigate("/")}>ShortRoutes <img src={Car} alt="Car" /></Logo>
+                <Element onClick={() => navigate("/careers")}>
                     Careers
                 </Element>
-                <Element>
+                <Element onClick={() => navigate("/pricing")}>
                     Pricing
                 </Element>
-                <Element>
+                <Element onClick={() => navigate("/login")}>
                     Login/Sign Up
                 </Element>
             </ElementFlex>

@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button {
+  background-color: #FF6A49;
+  color: white;
+  font-family: Itim;
+  border: none;
+  border-radius: 7px;
+  width: 16vw;
+  height: 7vh;
+}
+
+.text {
+  color: #FF6A49;
+  font-family: Itim;
+  padding-top: 3vh;
+}
+
+.fortypx {
+  font-size: 40px;
+}
+
+.twentypx {
+  font-size: 20px;
+}
+
