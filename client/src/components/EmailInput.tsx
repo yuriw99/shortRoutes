@@ -9,9 +9,11 @@ interface EmailProps {
 
 const StyledInput = styled.input`
     color: #FF6A49;
+    font-family: Itim;
 
     &::placeholder {
     color: #FFB7A7;
+    font-family: Itim;
 }
 `;
 
