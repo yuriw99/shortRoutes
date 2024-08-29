@@ -5,6 +5,10 @@ import EmailInput from '../components/EmailInput';
 
 const LoginStyle = styled.div`
     text-align: center;
+    display: flex;
+     flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `
 
 const Login = () => {
@@ -12,9 +16,9 @@ const Login = () => {
 
     return ( 
         <LoginStyle>
-            <br />
-            <br />
+            
             <div className="text fortypx">Login</div>
+            
             <EmailInput email={email} setEmail={setEmail} />
         </LoginStyle>
     ); 
