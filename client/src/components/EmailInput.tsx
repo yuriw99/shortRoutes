@@ -26,6 +26,7 @@ const StyledInput = styled.input`
 `;
 
 const EmailContainer = styled.div`
+    padding-top: 30px;
     width: 40vw; 
 `
 
