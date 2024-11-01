@@ -10,6 +10,7 @@ const LoginStyle = styled.div`
      flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-top: 5vh; 
 `
 
 const LoginButton = styled.div`
@@ -19,14 +20,23 @@ const LoginButton = styled.div`
     border-radius: 10px;
     margin-top: 30px;
     height: 8vh;
-    text-align: center;
     font-family: Itim;
     font-size: 120%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+const AccountText = styled.div`
+    color: #FF6A49;
+    font-family: Itim;
+    margin-top: 2vh;
 `;
 
 const Login = () => {
     const [email, setEmail] = useState<string>(""); 
     const [password, setPassword] = useState<string>("");
+    const navigate = useNavigate();
 
     return ( 
         <LoginStyle> 
@@ -34,6 +44,7 @@ const Login = () => {
             <EmailInput email={email} setEmail={setEmail} />
             <PasswordInput password={password} setPassword={setPassword} login={true} />
             <LoginButton>Login</LoginButton>
+            <AccountText onClick={()=>navigate("/signup")}>Don't have an account? Sign up here</AccountText>
         </LoginStyle>
     ); 
 }
