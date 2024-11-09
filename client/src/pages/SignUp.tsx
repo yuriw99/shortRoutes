@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import EmailInput from '../components/EmailInput';
 import PasswordInput from '../components/PasswordInput';
+import axios from 'axios';
 
 
 
@@ -69,7 +70,17 @@ const SignUp = () => {
 
     const signUpUser = () => {
         validateEmailPassword();
+        handleSignUp(); 
     }
+
+    const handleSignUp = async () => {
+        try {
+          const response = await axios.post('http://localhost:5000/signup', { email, password });
+          console.log(response.data.message);
+        } catch (error) {
+          console.error('Error signing up', error);
+        }
+      }
 
     return (
         <SignUpStyle>
