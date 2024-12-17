@@ -50,33 +50,42 @@ const SignUp = () => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (password.length < 10) {
             setErrorText("Your password needs to be more than 10 characters");
+            return false;
         }
         else if (password.length > 15) {
             setErrorText("Your password needs to be less than 15 characters");
+            return false;
         }
         else if (!specialCharacterRegex.test(password)){
             setErrorText("Your password needs to contain at least one special character");
+            return false;
         }
         else if(!numRegex.test(password)){
             setErrorText("Your password needs to contain at least one digit");
+            return false;
         }
         else if (!emailRegex.test(email)){
             setErrorText("Please enter a valid email");
+            return false;
         }
         else {
             setErrorText("");
+            return true;
         }
     }
 
     const signUpUser = () => {
-        validateEmailPassword();
+        if(validateEmailPassword()){
         handleSignUp(); 
+        }
     }
 
     const handleSignUp = async () => {
         try {
-          const response = await axios.post('http://localhost:5000/signup', { email, password });
+          const response = await axios.post('http://localhost:5000/api/send-verification-email', { email });
           console.log(response.data.message);
+
+          //move to the verify password page
         } catch (error) {
           console.error('Error signing up', error);
         }
