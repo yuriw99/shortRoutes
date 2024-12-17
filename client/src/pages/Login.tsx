@@ -44,7 +44,7 @@ const Login = () => {
             <EmailInput email={email} setEmail={setEmail} />
             <PasswordInput password={password} setPassword={setPassword} login={true} />
             <LoginButton>Login</LoginButton>
-            <AccountText onClick={()=>navigate("/signup")}>Don't have an account? Sign up here</AccountText>
+            <AccountText onClick={()=>navigate("/signup")}>Don't have an account? <u>Sign up here</u></AccountText>
         </LoginStyle>
     ); 
 }
