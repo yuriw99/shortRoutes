@@ -11,6 +11,10 @@ const PricesContainer = styled.div`
     gap: 20%;
     text-align: center;
 `
+const PriceSection = styled.div`
+    text-align: center;
+`
+
 
 const PriceBox = styled.div`
     border: 1px solid #FF6A49;
@@ -24,18 +28,33 @@ const Pricing = () => {
         <PricingStyle>
             <div className="text fortypx">Pricing</div>
             <PricesContainer>
+                <PriceSection>
+                    <div className="text twentypx">Free</div>
                 <PriceBox>
                     <ul><li>10 free attempts every month</li>
                         <li>Can input up to 10 locations</li>
                         <li>Allows options for walking, car, and bike</li>
                         <li>Comes with no AI tools</li></ul>
                 </PriceBox>
+                </PriceSection>
+                <PriceSection>
+                <div className="text twentypx">$5/month</div>
                 <PriceBox>
-
+                    <ul><li>Unlimited attempts every month</li>
+                    <li>Can input up to 15 locations</li>
+                    <li>Allows options for walking, car, and bike</li>
+                    <li>Comes with AI chatbot with limited input options</li></ul>
                 </PriceBox>
+                </PriceSection>
+                <PriceSection>
+                <div className="text twentypx">$10/month</div>
                 <PriceBox>
-
+                <ul><li>Unlimited attempts every month</li>
+                    <li>Can input up to 20 locations</li>
+                    <li>Allows options for any mode of travel</li>
+                    <li>Comes with AI chatbot that further customizes the experience</li></ul>
                 </PriceBox>
+                </PriceSection>
             </PricesContainer>
         </PricingStyle>
     );
