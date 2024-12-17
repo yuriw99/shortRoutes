@@ -43,6 +43,7 @@ const SignUp = () => {
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const [errorText, setErrorText] = useState<string>("");
+    const navigate = useNavigate();
 
     const validateEmailPassword = () => {
         const specialCharacterRegex = /[^a-zA-Z0-9]/;
@@ -86,6 +87,7 @@ const SignUp = () => {
           console.log(response.data.message);
 
           //move to the verify password page
+          navigate("/confirmation"); 
         } catch (error) {
           console.error('Error signing up', error);
         }
