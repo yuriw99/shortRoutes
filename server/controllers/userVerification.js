@@ -1,29 +1,30 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: 'wu.carissa@gmail.com',
-        pass: 'kaRie54sai'
+        user: process.env.FROM_EMAIL,
+        pass: process.env.PASSWORD_EMAIL
     }
 });
 
 const sendVerificationEmail = async (userEmail) => {
     try {
-        const fourDigitCode = `${Math.floor(1000 + Math.random() * 9000)}`;
+        const fiveDigitCode = `${Math.floor(10000 + Math.random() * 90000)}`;
 
         const mailOptions = {
-            from: 'wu.carissa@gmail.com',
+            from: process.env.FROM_EMAIL,
             to: userEmail, 
             subject: 'Verify Your Email',
-            html: `<p>Please verify your email using this four-digit code: <strong>${fourDigitCode}</strong></p>`
+            html: `<p>Please verify your email using this four-digit code: <strong>${fiveDigitCode}</strong></p>`
         };
 
         await transporter.sendMail(mailOptions);
 
         console.log(`Verification email sent to ${userEmail}`);
         
-        return fourDigitCode;
+        return fiveDigitCode;
     } catch (error) {
         console.error('Error sending verification email:', error.message);
         throw new Error('Could not send verification email. Please try again later.');
