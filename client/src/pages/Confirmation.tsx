@@ -1,5 +1,6 @@
 import React, { useState, useRef, ChangeEvent, KeyboardEvent } from 'react';
 import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const ConfirmStyle = styled.div`
@@ -28,6 +29,8 @@ const CodeContainer = styled.div`
 const Confirmation: React.FC = () => {
     const [values, setValues] = useState<string[]>(new Array(5).fill(''));
     const inputRefs = useRef<HTMLInputElement[]>([]);
+    const location = useLocation();
+    const { code } = location.state || {};
     const navigate = useNavigate();
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
@@ -47,7 +50,13 @@ const Confirmation: React.FC = () => {
 
         // If all boxes are filled, trigger a navigation or API call
         if (newValues.every((v) => v !== '')) {
-            
+            const codeArray = Array.from(String(code));
+            if(newValues.every((value, index) => value === codeArray[index])){
+
+            }
+            else {
+                console.log("not the correct code!")
+            }
         }
     };
 

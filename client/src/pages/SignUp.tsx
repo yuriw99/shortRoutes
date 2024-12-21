@@ -4,7 +4,9 @@ import styled from 'styled-components';
 import EmailInput from '../components/EmailInput';
 import PasswordInput from '../components/PasswordInput';
 import axios from 'axios';
-
+import {  useDispatch } from 'react-redux';
+import {  AppDispatch } from '../redux/store';
+import { setAllPagePassword } from '../redux/reducers';
 
 
 const SignUpStyle = styled.div`
@@ -44,6 +46,7 @@ const SignUp = () => {
     const [password, setPassword] = useState<string>("");
     const [errorText, setErrorText] = useState<string>("");
     const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
 
     const validateEmailPassword = () => {
         const specialCharacterRegex = /[^a-zA-Z0-9]/;
@@ -85,9 +88,10 @@ const SignUp = () => {
         try {
           const response = await axios.post('http://localhost:5000/api/send-verification-email', { email });
           console.log(response.data.message);
+          dispatch(setAllPagePassword(password));
 
           //move to the verify password page
-          navigate("/confirmation"); 
+          navigate("/confirmation", {state: {code : response.data.code}}); 
         } catch (error) {
           console.error('Error signing up', error);
         }
