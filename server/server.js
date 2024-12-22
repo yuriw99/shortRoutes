@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const emailRoutes = require('./routes/emailRoutes');
+const userRoutes = require('./routes/addUserRoutes');
 const cors = require('cors'); 
 
 const app = express();
@@ -11,6 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.use('/api', emailRoutes); 
+app.use('/api', addUserRoutes); 
 
 app.get('/', (req, res) => {
     res.send('Server is running!');
