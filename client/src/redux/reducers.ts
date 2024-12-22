@@ -1,10 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AppState {
+  email: string,
   password: string;
 }
 
 const initialState: AppState = {
+  email: 'initial email',
   password: 'initial value',
 };
 
@@ -15,8 +17,12 @@ const appSlice = createSlice({
     setAllPagePassword: (state, action: PayloadAction<string>) => {
       state.password = action.payload;
     },
+    setAllPageEmail: (state, action: PayloadAction<string>) => {
+        state.email = action.payload;
+      },
+    
   },
 });
 
-export const { setAllPagePassword } = appSlice.actions;
+export const { setAllPageEmail ,setAllPagePassword } = appSlice.actions;
 export default appSlice.reducer;
