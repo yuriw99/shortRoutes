@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.use('/api', emailRoutes); 
-app.use('/api', addUserRoutes); 
+app.use('/api', userRoutes); 
 
 app.get('/', (req, res) => {
     res.send('Server is running!');
