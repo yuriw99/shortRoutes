@@ -35,15 +35,39 @@ const LocationButton = styled.div`
     color: #FF6A49;
 `;
 
+interface Option {
+    label: string;
+    value: string;
+  }
+
 const FindRoutes = () => {
     const [numLocations, setNumLocations] = useState(0);
-    
+    const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+
+    const options: Option[] = [
+        { label: 'Walking', value: 'walking' },
+        { label: 'Car', value: 'car' },
+        { label: 'Bus', value: 'bus' },
+      ];
+
+      const handleSelect = (option: { value: string }) => {
+        setSelectedOption({
+          label: option.value,
+          value: option.value,
+        });
+      };
+
     return (
         <>
         {Array.from({ length: numLocations }, (_, index) => (
                 <LocationStyle key={index}>
                     <div className="text">Location {index + 1}</div>
                     <StyledInput />
+                    <Dropdown
+                    options={options.map((opt) => opt.label)} 
+                    onChange={handleSelect}  
+                    value={selectedOption?.label || 'Walking'}  
+                    />
                 </LocationStyle>
             ))}
         <LocationButton onClick={()=> setNumLocations(numLocations + 1)}>+</LocationButton>
