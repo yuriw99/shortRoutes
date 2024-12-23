@@ -15,7 +15,7 @@ const sendVerificationEmail = async (userEmail) => {
 
         const mailOptions = {
             from: process.env.FROM_EMAIL,
-            to: userEmail, 
+            to: userEmail,
             subject: 'Verify Your Email',
             html: `<p>Please verify your email using this four-digit code: <strong>${fiveDigitCode}</strong></p>`
         };
@@ -23,7 +23,7 @@ const sendVerificationEmail = async (userEmail) => {
         await transporter.sendMail(mailOptions);
 
         console.log(`Verification email sent to ${userEmail}`);
-        
+
         return fiveDigitCode;
     } catch (error) {
         console.error('Error sending verification email:', error.message);
@@ -34,8 +34,8 @@ const sendVerificationEmail = async (userEmail) => {
 
 const sendVerificationCode = async (req, res) => {
     try {
-        const { email } = req.body; 
-        
+        const { email } = req.body;
+
         if (!email) {
             return res.status(400).json({ message: 'Email is required' });
         }

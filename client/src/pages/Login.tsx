@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import styled from 'styled-components' ;
-import EmailInput from '../components/EmailInput'; 
-import PasswordInput from '../components/PasswordInput'; 
+import styled from 'styled-components';
+import EmailInput from '../components/EmailInput';
+import PasswordInput from '../components/PasswordInput';
 
 const LoginStyle = styled.div`
     text-align: center;
@@ -34,19 +34,19 @@ const AccountText = styled.div`
 `;
 
 const Login = () => {
-    const [email, setEmail] = useState<string>(""); 
+    const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
     const navigate = useNavigate();
 
-    return ( 
-        <LoginStyle> 
+    return (
+        <LoginStyle>
             <div className="text fortypx">Login</div>
             <EmailInput email={email} setEmail={setEmail} />
             <PasswordInput password={password} setPassword={setPassword} login={true} />
             <LoginButton>Login</LoginButton>
-            <AccountText onClick={()=>navigate("/signup")}>Don't have an account? <u>Sign up here</u></AccountText>
+            <AccountText onClick={() => navigate("/signup")}>Don't have an account? <u>Sign up here</u></AccountText>
         </LoginStyle>
-    ); 
+    );
 }
 
 export default Login; 

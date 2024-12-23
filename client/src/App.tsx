@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from './components/Header';
-import MainPage from './pages/Main'; 
+import MainPage from './pages/Main';
 import LoginPage from './pages/Login';
 import SignUpPage from './pages/SignUp';
 import PricingPage from './pages/Pricing';
-import ConfirmationPage from './pages/Confirmation'; 
+import ConfirmationPage from './pages/Confirmation';
 import CareersPage from './pages/Careers';
 import SuccessPage from './pages/ConfirmSuccess';
 import RoutesPage from './pages/Routes';
@@ -21,12 +21,12 @@ function App() {
         <Routes>
           <Route path="/" element={<MainPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUpPage/>}/>
-          <Route path="/pricing" element={<PricingPage/>}/>
-          <Route path="/confirmation" element={<ConfirmationPage />}/>
-          <Route path="/success" element={<SuccessPage />}/>
+          <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/confirmation" element={<ConfirmationPage />} />
+          <Route path="/success" element={<SuccessPage />} />
           <Route path="/careers" element={<CareersPage />} />
-          <Route path="/findRoutes" element={<RoutesPage/>} />
+          <Route path="/findRoutes" element={<RoutesPage />} />
         </Routes>
       </>
     </Router>

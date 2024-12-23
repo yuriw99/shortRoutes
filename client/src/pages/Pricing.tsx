@@ -43,41 +43,41 @@ const Pricing = () => {
                 <PriceSection>
                     <div className="text twentypx">Free</div>
                     <br />
-                <PriceBox>
-                    <ul><li>10 free attempts every month</li>
-                    <br />
-                        <li>Can input up to 10 locations</li>
-                        <br />
-                        <li>Allows options for walking, car, and bike</li>
-                        <br />
-                        <li>Comes with no AI tools</li></ul>
-                </PriceBox>
+                    <PriceBox>
+                        <ul><li>10 free attempts every month</li>
+                            <br />
+                            <li>Can input up to 10 locations</li>
+                            <br />
+                            <li>Allows options for walking, car, and bike</li>
+                            <br />
+                            <li>Comes with no AI tools</li></ul>
+                    </PriceBox>
                 </PriceSection>
                 <PriceSection>
-                <div className="text twentypx">$5/month</div>
-                <br />
-                <PriceBox>
-                    <ul><li>Unlimited attempts every month</li>
+                    <div className="text twentypx">$5/month</div>
                     <br />
-                    <li>Can input up to 15 locations</li>
-                    <br />
-                    <li>Allows options for walking, car, and bike</li>
-                    <br />
-                    <li>Comes with AI chatbot with limited input options</li></ul>
-                </PriceBox>
+                    <PriceBox>
+                        <ul><li>Unlimited attempts every month</li>
+                            <br />
+                            <li>Can input up to 15 locations</li>
+                            <br />
+                            <li>Allows options for walking, car, and bike</li>
+                            <br />
+                            <li>Comes with AI chatbot with limited input options</li></ul>
+                    </PriceBox>
                 </PriceSection>
                 <PriceSection>
-                <div className="text twentypx">$10/month</div>
-                <br />
-                <PriceBox>
-                <ul><li>Unlimited attempts every month</li>
-                <br />
-                    <li>Can input up to 20 locations</li>
+                    <div className="text twentypx">$10/month</div>
                     <br />
-                    <li>Allows options for any mode of travel</li>
-                    <br />
-                    <li>Comes with AI chatbot that further customizes the experience</li></ul>
-                </PriceBox>
+                    <PriceBox>
+                        <ul><li>Unlimited attempts every month</li>
+                            <br />
+                            <li>Can input up to 20 locations</li>
+                            <br />
+                            <li>Allows options for any mode of travel</li>
+                            <br />
+                            <li>Comes with AI chatbot that further customizes the experience</li></ul>
+                    </PriceBox>
                 </PriceSection>
             </PricesContainer>
             <PlanButton>Choose a plan</PlanButton>

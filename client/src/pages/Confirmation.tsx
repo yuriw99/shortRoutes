@@ -62,7 +62,7 @@ const Confirmation: React.FC = () => {
         // If all boxes are filled, trigger a navigation or API call
         if (newValues.every((v) => v !== '')) {
             const codeArray = Array.from(String(code));
-            if(newValues.every((value, index) => value === codeArray[index])){
+            if (newValues.every((value, index) => value === codeArray[index])) {
                 navigate("/success");
             }
             else {
@@ -103,7 +103,7 @@ const Confirmation: React.FC = () => {
         // Check if verification code matches. If it does, then go to success page
         if (newValues.every((v) => v !== '')) {
             const codeArray = Array.from(String(code));
-            if(newValues.every((value, index) => value === codeArray[index])){
+            if (newValues.every((value, index) => value === codeArray[index])) {
                 navigate("/success");
             }
             else {
@@ -111,7 +111,7 @@ const Confirmation: React.FC = () => {
                 //console.log("correct code is", codeArray);
                 //console.log("incorrect code is", newValues);
                 setErrorText("Please enter the correct code")
-            }            
+            }
         }
     };
 

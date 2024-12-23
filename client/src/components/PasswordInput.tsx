@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import styled from 'styled-components' ;
+import styled from 'styled-components';
 
 interface PasswordProps {
     password: string;
-    setPassword: Function; 
+    setPassword: Function;
     login: Boolean;
 }
 
@@ -37,14 +37,14 @@ const PasswordText = styled.div`
     font-family: Itim;
 `
 
-const PasswordInput = ({password, setPassword, login}: PasswordProps) => {
+const PasswordInput = ({ password, setPassword, login }: PasswordProps) => {
     return (
         <PasswordContainer>
             <PasswordText>Password</PasswordText>
-        <StyledInput value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
-           { !login ? <PasswordText>Must be between 10-15 characters, at least one special character and digit</PasswordText> 
-    : <PasswordText>Forgot your password? <u>Click here</u></PasswordText>
-}
+            <StyledInput value={password} onChange={(e) => setPassword(e.target.value)} type="password" />
+            {!login ? <PasswordText>Must be between 10-15 characters, at least one special character and digit</PasswordText>
+                : <PasswordText>Forgot your password? <u>Click here</u></PasswordText>
+            }
         </PasswordContainer>
     );
 }

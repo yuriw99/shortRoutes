@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import styled from 'styled-components' ;
+import styled from 'styled-components';
 
 const CareersStyle = styled.div`    
     text-align: center;
@@ -15,7 +15,7 @@ const Careers = () => {
         <CareersStyle>
             <div className="text fortypx">Internships</div>
             <div className="text">There are currently no internship opportunities. Please come back
-                at another time :( 
+                at another time :(
             </div>
         </CareersStyle>
     )

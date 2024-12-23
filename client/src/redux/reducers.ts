@@ -1,28 +1,28 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface AppState {
-  email: string,
-  password: string;
+    email: string,
+    password: string;
 }
 
 const initialState: AppState = {
-  email: 'initial email',
-  password: 'initial value',
+    email: 'initial email',
+    password: 'initial value',
 };
 
 const appSlice = createSlice({
-  name: 'app',
-  initialState,
-  reducers: {
-    setAllPagePassword: (state, action: PayloadAction<string>) => {
-      state.password = action.payload;
+    name: 'app',
+    initialState,
+    reducers: {
+        setAllPagePassword: (state, action: PayloadAction<string>) => {
+            state.password = action.payload;
+        },
+        setAllPageEmail: (state, action: PayloadAction<string>) => {
+            state.email = action.payload;
+        },
+
     },
-    setAllPageEmail: (state, action: PayloadAction<string>) => {
-        state.email = action.payload;
-      },
-    
-  },
 });
 
-export const { setAllPageEmail ,setAllPagePassword } = appSlice.actions;
+export const { setAllPageEmail, setAllPagePassword } = appSlice.actions;
 export default appSlice.reducer;

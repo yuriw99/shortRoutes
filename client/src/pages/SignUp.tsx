@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import EmailInput from '../components/EmailInput';
 import PasswordInput from '../components/PasswordInput';
 import axios from 'axios';
-import {  useDispatch } from 'react-redux';
-import {  AppDispatch } from '../redux/store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../redux/store';
 import { setAllPageEmail, setAllPagePassword } from '../redux/reducers';
 
 
@@ -60,15 +60,15 @@ const SignUp = () => {
             setErrorText("Your password needs to be less than 15 characters");
             return false;
         }
-        else if (!specialCharacterRegex.test(password)){
+        else if (!specialCharacterRegex.test(password)) {
             setErrorText("Your password needs to contain at least one special character");
             return false;
         }
-        else if(!numRegex.test(password)){
+        else if (!numRegex.test(password)) {
             setErrorText("Your password needs to contain at least one digit");
             return false;
         }
-        else if (!emailRegex.test(email)){
+        else if (!emailRegex.test(email)) {
             setErrorText("Please enter a valid email");
             return false;
         }
@@ -79,24 +79,24 @@ const SignUp = () => {
     }
 
     const signUpUser = () => {
-        if(validateEmailPassword()){
-        handleSignUp(); 
+        if (validateEmailPassword()) {
+            handleSignUp();
         }
     }
 
     const handleSignUp = async () => {
         try {
-          const response = await axios.post('http://localhost:5000/api/send-verification-email', { email });
-          console.log(response.data.message);
-          dispatch(setAllPagePassword(password));
-          dispatch(setAllPageEmail(email));
+            const response = await axios.post('http://localhost:5000/api/send-verification-email', { email });
+            console.log(response.data.message);
+            dispatch(setAllPagePassword(password));
+            dispatch(setAllPageEmail(email));
 
-          //move to the verify password page
-          navigate("/confirmation", {state: {code : response.data.code}}); 
+            //move to the verify password page
+            navigate("/confirmation", { state: { code: response.data.code } });
         } catch (error) {
-          console.error('Error signing up', error);
+            console.error('Error signing up', error);
         }
-      }
+    }
 
     return (
         <SignUpStyle>

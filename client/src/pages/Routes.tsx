@@ -1,9 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-
-
 
 const LocationStyle = styled.div`
     display: flex;
@@ -53,7 +51,7 @@ const ButtonContainer = styled.div`
 interface Option {
     label: string;
     value: string;
-  }
+}
 
 const FindRoutes = () => {
     const [numLocations, setNumLocations] = useState(0);
@@ -63,35 +61,35 @@ const FindRoutes = () => {
         { label: 'Walking', value: 'walking' },
         { label: 'Car', value: 'car' },
         { label: 'Bus', value: 'bus' },
-      ];
+    ];
 
-      const handleSelect = (option: { value: string }) => {
+    const handleSelect = (option: { value: string }) => {
         setSelectedOption({
-          label: option.value,
-          value: option.value,
+            label: option.value,
+            value: option.value,
         });
-      };
+    };
 
     return (
         <>
-        <LocationStyle>
-            <div className="text">Starting Location</div>
-            <StyledInput placeholder="100 Church St" />
-        </LocationStyle>
-        {Array.from({ length: numLocations }, (_, index) => (
+            <LocationStyle>
+                <div className="text">Starting Location</div>
+                <StyledInput placeholder="100 Church St" />
+            </LocationStyle>
+            {Array.from({ length: numLocations }, (_, index) => (
                 <LocationStyle key={index}>
                     <div className="text">Location {index + 1}</div>
                     <StyledInput placeholder="100 Church St" />
                     <Dropdown
-                    options={options.map((opt) => opt.label)} 
-                    onChange={handleSelect}  
-                    value={selectedOption?.label || 'Walking'}  
+                        options={options.map((opt) => opt.label)}
+                        onChange={handleSelect}
+                        value={selectedOption?.label || 'Walking'}
                     />
                 </LocationStyle>
             ))}
             <ButtonContainer>
-        <LocationButton onClick={()=> setNumLocations(numLocations + 1)}>+</LocationButton>
-        </ButtonContainer>
+                <LocationButton onClick={() => setNumLocations(numLocations + 1)}>+</LocationButton>
+            </ButtonContainer>
         </>
     )
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
-import styled from 'styled-components' ;
-import Girl from '../images/Girl.png'; 
+import styled from 'styled-components';
+import Girl from '../images/Girl.png';
 
 const MainPageStyle = styled.div`
     display: flex;
@@ -20,7 +20,7 @@ const MainText = styled.div`
 
 
 const MainPage = () => {
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     return (
         <MainPageStyle>
@@ -31,9 +31,9 @@ const MainPage = () => {
                     Plan out your routes to get to your destinations in the shortest time!
                 </div>
                 <div className="text twentypx">
-                Input up to 10 locations for the fastest way to get to all of them
+                    Input up to 10 locations for the fastest way to get to all of them
                 </div>
-                <br /> <br /> 
+                <br /> <br />
                 <button className="twentypx" onClick={() => navigate("/findRoutes")}>Try for Free</button>
             </MainText>
         </MainPageStyle>
