@@ -7,6 +7,7 @@ import PricingPage from './pages/Pricing';
 import ConfirmationPage from './pages/Confirmation'; 
 import CareersPage from './pages/Careers';
 import SuccessPage from './pages/ConfirmSuccess';
+import RoutesPage from './pages/Routes';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -25,7 +26,7 @@ function App() {
           <Route path="/confirmation" element={<ConfirmationPage />}/>
           <Route path="/success" element={<SuccessPage />}/>
           <Route path="/careers" element={<CareersPage />} />
-
+          <Route path="/findRoutes" element={<RoutesPage/>} />
         </Routes>
       </>
     </Router>
