@@ -55,7 +55,7 @@ interface Option {
 
 const FindRoutes = () => {
     const [numLocations, setNumLocations] = useState(0);
-    const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+    const [selectedOption, setSelectedOption] = useState("");
 
     const options: Option[] = [
         { label: 'Walking', value: 'walking' },
@@ -64,10 +64,9 @@ const FindRoutes = () => {
     ];
 
     const handleSelect = (option: { value: string }) => {
-        setSelectedOption({
-            label: option.value,
-            value: option.value,
-        });
+        setSelectedOption(
+            option.value
+        );
     };
 
     return (
@@ -83,7 +82,7 @@ const FindRoutes = () => {
                     <Dropdown
                         options={options.map((opt) => opt.label)}
                         onChange={handleSelect}
-                        value={selectedOption?.label || 'Walking'}
+                        value={selectedOption || 'Walking'}
                     />
                 </LocationStyle>
             ))}
