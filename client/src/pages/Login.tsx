@@ -58,6 +58,7 @@ const Login = () => {
             if(response.data.message == 'this is the correct user'){
                 dispatch(setAllPagePassword(password));
                 dispatch(setAllPageEmail(email));
+                navigate("/");
             }
             else if (response.data.message == 'incorrect password'){
                 setErrorText("Incorrect password")

@@ -19,18 +19,18 @@ try {
     connectDB();
     const user = await User.findOne({ email });
     if (!user) {
-        return res.status(400).json({ message: 'User not found' });
+        return res.status(200).json({ message: 'User not found' });
     }
     if (user.password == password) {
         return res.status(200).json({ message: 'this is the correct user' });
     }
     else {
-        return res.status(400).json({ message: 'incorrect password' });
+        return res.status(200).json({ message: 'incorrect password' });
     }
 } catch(error){
-    return res.status(500).json({message: 'cannot connect'});
+    return res.status(200).json({message: 'cannot connect'});
 }
 
 }
 
-module.exports(loginUser);
+module.exports = {loginUser};

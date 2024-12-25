@@ -15,14 +15,20 @@ const Element = styled.div`
     color: white;
 `;
 
+const HeaderFlex = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
 const ElementFlex = styled.div`
     display: flex;
     align-items: center;
     gap: 5vw;
+    padding-right: 2vw;
 `;
 
 const Logo = styled.div`
-    padding-right: 45vw;
     padding-left: 2vw;
     font-size: 32px;
     font-family: Kalam;
@@ -40,17 +46,18 @@ const HeadStyle = styled.div`
 const Header = () => {
     const email = useSelector((state: RootState) => state.email);
     const navigate = useNavigate();
+    const dispatch = useDispatch<AppDispatch>();
 
     const logout = () => {
-        const dispatch = useDispatch<AppDispatch>();
         dispatch(setAllPagePassword('initial password'));
         dispatch(setAllPageEmail('initial email'));
     }
-    
+
     return (
         <HeadStyle>
-            <ElementFlex>
+            <HeaderFlex>
                 <Logo onClick={() => navigate("/")}>ShortRoutes <img src={Car} alt="Car" /></Logo>
+                <ElementFlex>
                 <Element onClick={() => navigate("/careers")}>
                     Careers
                 </Element>
@@ -60,13 +67,14 @@ const Header = () => {
                 { email=='initial email' ? (
                 <Element onClick={() => navigate("/login")}>
                     Login/Sign Up
-                </Element>) : ( 
+                </Element>) : ( <>
+                    <Element> MyRoutes </Element>
                     <Element onClick={logout}>
                         Logout
-                    </Element>
-                )
-}
-            </ElementFlex>
+                    </Element></>
+                ) 
+}</ElementFlex>
+            </HeaderFlex>
         </HeadStyle>
     )
 }
