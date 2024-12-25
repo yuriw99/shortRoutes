@@ -1,5 +1,10 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../redux/store';
+import { setAllPageEmail, setAllPagePassword } from '../redux/reducers';
 import styled from 'styled-components';
 import Car from '../images/Car.svg';
 
@@ -31,8 +36,17 @@ const HeadStyle = styled.div`
 
 `;
 
+
 const Header = () => {
+    const email = useSelector((state: RootState) => state.email);
     const navigate = useNavigate();
+
+    const logout = () => {
+        const dispatch = useDispatch<AppDispatch>();
+        dispatch(setAllPagePassword('initial password'));
+        dispatch(setAllPageEmail('initial email'));
+    }
+    
     return (
         <HeadStyle>
             <ElementFlex>
@@ -43,9 +57,15 @@ const Header = () => {
                 <Element onClick={() => navigate("/pricing")}>
                     Pricing
                 </Element>
+                { email=='initial email' ? (
                 <Element onClick={() => navigate("/login")}>
                     Login/Sign Up
-                </Element>
+                </Element>) : ( 
+                    <Element onClick={logout}>
+                        Logout
+                    </Element>
+                )
+}
             </ElementFlex>
         </HeadStyle>
     )

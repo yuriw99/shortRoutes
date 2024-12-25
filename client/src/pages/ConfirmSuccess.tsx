@@ -30,10 +30,10 @@ const ConfirmSuccess = () => {
 
     const addUsertoDatabase = async () => {
         try {
-          //  const response = await axios.post('http://localhost:5000/api/add-new-user', { email, password });
-          //  await sleep(3000);
-         //   setLoading(false);
-        //    navigate("/");
+            const response = await axios.post('http://localhost:5000/api/add-new-user', { email, password });
+            await sleep(3000);
+            setLoading(false);
+            navigate("/");
         } catch (error) {
             console.error(error);
         }

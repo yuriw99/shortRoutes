@@ -7,7 +7,7 @@ interface AppState {
 
 const initialState: AppState = {
     email: 'initial email',
-    password: 'initial value',
+    password: 'initial password',
 };
 
 const appSlice = createSlice({
