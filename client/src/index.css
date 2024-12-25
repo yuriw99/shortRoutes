@@ -17,6 +17,7 @@ button {
   border-radius: 7px;
   width: 16vw;
   height: 7vh;
+  cursor: pointer;
 }
 
 .text {

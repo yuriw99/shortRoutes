@@ -30,6 +30,7 @@ const SignUpButton = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 `;
 
 const ErrorMessage = styled.div`
