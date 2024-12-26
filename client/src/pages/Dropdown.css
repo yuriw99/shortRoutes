@@ -1,0 +1,27 @@
+.myControlClassName {
+    border: 1px solid #FF6A49;
+    color: #FF6A49;
+    border-radius: 5px;
+    height: 6vh;
+    width: 15vw;
+    margin-top: 4%;
+}
+
+.myMenuClassName {
+    border: 1px solid #FF6A49;
+    border-radius: 5px;
+}
+
+.Dropdown-option {
+    color: #FF6A49;
+}
+
+.myArrowClassName {
+    border-color:#FF6A49 transparent transparent ;
+    border-width: 9px 7px 0 ; 
+}
+
+.is-open .Dropdown-arrow {
+    border-color:transparent transparent  #FF6A49;
+    border-width: 0 7px 9px ; 
+}

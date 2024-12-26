@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import './Dropdown.css'; 
 
 const LocationStyle = styled.div`
     display: flex;
@@ -84,6 +85,9 @@ const FindRoutes = () => {
                     <div className="text">Location {index + 1}</div>
                     <StyledInput placeholder="100 Church St" />
                     <Dropdown
+                        controlClassName='myControlClassName'
+                        menuClassName='myMenuClassName'
+                        arrowClassName='myArrowClassName'
                         options={options.map((opt) => opt.label)}
                         onChange={handleSelect}
                         value={selectedOptions[index] || 'Walking'}
