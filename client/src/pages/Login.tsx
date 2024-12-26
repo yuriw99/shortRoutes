@@ -56,15 +56,15 @@ const Login = () => {
     const login = async () => {
         try {
             const response = await axios.post('http://localhost:5000/api/login-user', { email, password });
-            if(response.data.message == 'this is the correct user'){
+            if(response.data.message === 'this is the correct user'){
                 dispatch(setAllPagePassword(password));
                 dispatch(setAllPageEmail(email));
                 navigate("/");
             }
-            else if (response.data.message == 'incorrect password'){
+            else if (response.data.message === 'incorrect password'){
                 setErrorText("Incorrect password")
             }
-            else if (response.data.message == 'cannot connect'){
+            else if (response.data.message === 'cannot connect'){
                 alert("Cannot Connect. Please try again");
             }
             else {
@@ -72,6 +72,7 @@ const Login = () => {
             }
 
         } catch(error){
+            alert("Cannot Connect. Please try again");
             console.log(error);
         }
     }

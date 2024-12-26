@@ -64,7 +64,7 @@ const Header = () => {
                 <Element onClick={() => navigate("/pricing")}>
                     Pricing
                 </Element>
-                { email=='initial email' ? (
+                { email==='initial email' ? (
                 <Element onClick={() => navigate("/login")}>
                     Login/Sign Up
                 </Element>) : ( <>
