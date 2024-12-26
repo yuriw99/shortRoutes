@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import './Dropdown.css'; 
+import './Dropdown.css';
 
 const LocationStyle = styled.div`
     display: flex;
@@ -64,15 +64,32 @@ const FindRoutes = () => {
         { label: 'Bus', value: 'bus' },
     ];
 
-    const handleSelect = (option: { value: string }) => {
+    const handleSelect = (option: { value: string }, index: number) => {
         const newOption: Option = {
             value: option.value,
-            label: option.value 
-        };
-        setSelectedOptions(
-            [...selectedOptions,  newOption]
-        );
+            label: option.value
+        }
+        const updatedOptions = [
+            ...selectedOptions.slice(0, index),
+            newOption,
+            ...selectedOptions.slice(index + 1),
+        ];
+        setSelectedOptions(updatedOptions);
     };
+
+    const addALocation = () => {
+        if (numLocations < 10) {
+            setNumLocations(numLocations + 1);
+            const newOption: Option = {
+                value: 'walking',
+                label: 'Walking'
+            };
+            setSelectedOptions(
+                [...selectedOptions, newOption]
+            );
+        }
+
+    }
 
     return (
         <>
@@ -89,13 +106,13 @@ const FindRoutes = () => {
                         menuClassName='myMenuClassName'
                         arrowClassName='myArrowClassName'
                         options={options.map((opt) => opt.label)}
-                        onChange={handleSelect}
+                        onChange={(selectedOption) => handleSelect(selectedOption, index)}
                         value={selectedOptions[index] || 'Walking'}
                     />
                 </LocationStyle>
             ))}
             <ButtonContainer>
-                <LocationButton onClick={() => setNumLocations(numLocations + 1)}>+</LocationButton>
+                <LocationButton onClick={addALocation}>+</LocationButton>
             </ButtonContainer>
         </>
     )
