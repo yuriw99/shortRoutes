@@ -8,6 +8,7 @@ import ConfirmationPage from './pages/Confirmation';
 import CareersPage from './pages/Careers';
 import SuccessPage from './pages/ConfirmSuccess';
 import RoutesPage from './pages/Routes';
+import ForgetPasswordPage from './pages/ForgetPassword'; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 
@@ -27,6 +28,7 @@ function App() {
           <Route path="/success" element={<SuccessPage />} />
           <Route path="/careers" element={<CareersPage />} />
           <Route path="/findRoutes" element={<RoutesPage />} />
+          <Route path="/forgetPassword" element={<ForgetPasswordPage />} />
         </Routes>
       </>
     </Router>

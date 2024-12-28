@@ -32,10 +32,14 @@ const sendInfoDatabase = async (email, password) => {
 const addUser = async (req, res) => {
     try {
         const { email, password } = req.body;
-        connectDB();
-        sendInfoDatabase(email, password);
+        if (email != "initial email") {
+            connectDB();
+            sendInfoDatabase(email, password);
 
-        res.status(200).json({ message: 'User added successfully' });
+            res.status(200).json({ message: 'User added successfully' });
+        } else {
+            res.status(400).json({ message: "Tried to add 'initial email, not real email" })
+        }
 
     } catch (error) {
         console.log(error.message);
