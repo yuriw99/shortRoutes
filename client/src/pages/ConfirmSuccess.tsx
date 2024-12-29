@@ -7,7 +7,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { RootState } from '../redux/store';
 
 const override: CSSProperties = {
-   
+
 };
 
 const SuccessStyle = styled.div`    
@@ -26,7 +26,7 @@ const ConfirmSuccess = () => {
 
     const sleep = (ms: number): Promise<void> => {
         return new Promise(resolve => setTimeout(resolve, ms));
-      };
+    };
 
     const addUsertoDatabase = async () => {
         try {

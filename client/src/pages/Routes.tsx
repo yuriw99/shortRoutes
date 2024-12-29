@@ -57,7 +57,7 @@ interface Option {
 
 const FindRoutes = () => {
     const [numLocations, setNumLocations] = useState(0);
-    const [locations, setLocations] = useState<string[]> (["empty location"]);
+    const [locations, setLocations] = useState<string[]>(["empty location"]);
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
     const navigate = useNavigate();
 
@@ -90,7 +90,7 @@ const FindRoutes = () => {
     };
 
     const calculateDistance = () => {
-      //  navigate("/results");
+        //  navigate("/results");
     }
 
     const addALocation = () => {
@@ -103,7 +103,7 @@ const FindRoutes = () => {
             setSelectedOptions(
                 [...selectedOptions, newOption]
             );
-            setLocations (
+            setLocations(
                 [...locations, "empty location"]
             );
         }
@@ -134,7 +134,7 @@ const FindRoutes = () => {
                 <LocationButton onClick={addALocation}>+</LocationButton>
             </ButtonContainer>
             <ButtonContainer> <button className="twentypx margintop" onClick={calculateDistance}>Submit Routes</button></ButtonContainer>
-            
+
         </>
     )
 }
