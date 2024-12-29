@@ -56,6 +56,7 @@ interface Option {
 
 const FindRoutes = () => {
     const [numLocations, setNumLocations] = useState(0);
+    const [locations, setLocations] = useState<string[]> (["empty location"]);
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
 
     const options: Option[] = [
@@ -63,6 +64,15 @@ const FindRoutes = () => {
         { label: 'Car', value: 'car' },
         { label: 'Bus', value: 'bus' },
     ];
+
+    const inputLocation = (newLocation: string, index: number) => {
+        const updatedLocations = [
+            ...locations.slice(0, index),
+            newLocation,
+            ...locations.slice(index + 1)
+        ];
+        setLocations(updatedLocations);
+    }
 
     const handleSelect = (option: { value: string }, index: number) => {
         const newOption: Option = {
@@ -87,6 +97,9 @@ const FindRoutes = () => {
             setSelectedOptions(
                 [...selectedOptions, newOption]
             );
+            setLocations (
+                [...locations, "empty location"]
+            );
         }
 
     }
@@ -95,12 +108,12 @@ const FindRoutes = () => {
         <>
             <LocationStyle>
                 <div className="text">Starting Location</div>
-                <StyledInput placeholder="100 Church St" />
+                <StyledInput placeholder="100 Church St" onChange={(e) => inputLocation(e.target.value, 0)} />
             </LocationStyle>
             {Array.from({ length: numLocations }, (_, index) => (
                 <LocationStyle key={index}>
                     <div className="text">Location {index + 1}</div>
-                    <StyledInput placeholder="100 Church St" />
+                    <StyledInput placeholder="100 Church St" onChange={(e) => inputLocation(e.target.value, index + 1)} />
                     <Dropdown
                         controlClassName='myControlClassName'
                         menuClassName='myMenuClassName'
@@ -114,6 +127,8 @@ const FindRoutes = () => {
             <ButtonContainer>
                 <LocationButton onClick={addALocation}>+</LocationButton>
             </ButtonContainer>
+            <ButtonContainer> <button className="twentypx margintop">Submit Routes</button></ButtonContainer>
+            
         </>
     )
 }
