@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Dropdown from 'react-dropdown';
+import { useNavigate } from "react-router-dom";
 import 'react-dropdown/style.css';
 import './Dropdown.css';
 
@@ -58,6 +59,7 @@ const FindRoutes = () => {
     const [numLocations, setNumLocations] = useState(0);
     const [locations, setLocations] = useState<string[]> (["empty location"]);
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+    const navigate = useNavigate();
 
     const options: Option[] = [
         { label: 'Walking', value: 'walking' },
@@ -86,6 +88,10 @@ const FindRoutes = () => {
         ];
         setSelectedOptions(updatedOptions);
     };
+
+    const calculateDistance = () => {
+      //  navigate("/results");
+    }
 
     const addALocation = () => {
         if (numLocations < 10) {
@@ -127,7 +133,7 @@ const FindRoutes = () => {
             <ButtonContainer>
                 <LocationButton onClick={addALocation}>+</LocationButton>
             </ButtonContainer>
-            <ButtonContainer> <button className="twentypx margintop">Submit Routes</button></ButtonContainer>
+            <ButtonContainer> <button className="twentypx margintop" onClick={calculateDistance}>Submit Routes</button></ButtonContainer>
             
         </>
     )
