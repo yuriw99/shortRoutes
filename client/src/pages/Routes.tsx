@@ -27,8 +27,13 @@ const StyledInput = styled.input`
     color: #FFB7A7;
     font-family: Itim;
     font-size: 1em; 
-
 }
+
+    &:focus {
+    border: 1px solid #C32604; 
+}
+
+
 `;
 
 
@@ -114,12 +119,12 @@ const FindRoutes = () => {
         <>
             <LocationStyle>
                 <div className="text">Starting Location</div>
-                <StyledInput placeholder="100 Church St" onChange={(e) => inputLocation(e.target.value, 0)} />
+                <StyledInput placeholder="100 Church St New York, NY 10007" onChange={(e) => inputLocation(e.target.value, 0)} />
             </LocationStyle>
             {Array.from({ length: numLocations }, (_, index) => (
                 <LocationStyle key={index}>
                     <div className="text">Location {index + 1}</div>
-                    <StyledInput placeholder="100 Church St" onChange={(e) => inputLocation(e.target.value, index + 1)} />
+                    <StyledInput placeholder="100 Church St New York, NY 10007" onChange={(e) => inputLocation(e.target.value, index + 1)} />
                     <Dropdown
                         controlClassName='myControlClassName'
                         menuClassName='myMenuClassName'
