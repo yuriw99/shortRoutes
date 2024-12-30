@@ -52,11 +52,12 @@ const getDistanceTwoPoints = async (location1, location2, travelMethod) => {
     }
 }
 
-//returns list of shortest distance nodes (for example [0, 1, 4, 2, 3])
+//returns list of shortest distance nodes (for example [0, 1, 4, 2, 3]) as well as the total time to get to all of these nodes
 const applyAlgorithm = (matrix) => {
 
 }
 
+//returns a list of directions that you will need to travel
 const getDirectionsList = (matrix, indicies) => {
 
 }
@@ -79,16 +80,16 @@ const findShortestRoute = async (req, res) => {
                     directionsMatrix = [];
                 }
                 else {
-                    time, directions = getDistanceTwoPoints(coordinateList[i], coordinateList[j], transportList[i]);
+                    const {time, directions} = getDistanceTwoPoints(coordinateList[i], coordinateList[j], transportList[i]);
                     timeMatrix[i][j] = time;
                     directionsMatrix[i][j] = directions;
                 }
             }
         }
-        const indices = applyAlgorithm(timeMatrix);
+        const {time, indices} = applyAlgorithm(timeMatrix);
         const locationsOrder = indices.map(index => locationList[index]);
         const directionsOrder = getDirectionsList(directionsMatrix, indices)
-        res.status(200).json({locations: locationsOrder, directions: directionsOrder});
+        res.status(200).json({locations: locationsOrder, directions: directionsOrder, totalTime: time});
 
 
     } catch (error) {

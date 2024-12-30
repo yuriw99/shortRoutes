@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Dropdown from 'react-dropdown';
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import 'react-dropdown/style.css';
 import './Dropdown.css';
 
@@ -94,8 +95,13 @@ const FindRoutes = () => {
         setSelectedOptions(updatedOptions);
     };
 
-    const calculateDistance = () => {
-        //  navigate("/results");
+    const calculateRoute = async () => {
+        try{
+            const response = await axios.post('http://localhost:5000/api/find-shortest-route', {locations, selectedOptions}); //not selectedOptions, need to change this
+            navigate("/results", {state: {locationList: response.data.locations, directions: response.data.directions, totalTime: response.data.totalTime}});
+        }catch (error) {
+            console.error(error);
+        }
     }
 
     const addALocation = () => {
@@ -138,7 +144,7 @@ const FindRoutes = () => {
             <ButtonContainer>
                 <LocationButton onClick={addALocation}>+</LocationButton>
             </ButtonContainer>
-            <ButtonContainer> <button className="twentypx margintop" onClick={calculateDistance}>Submit Routes</button></ButtonContainer>
+            <ButtonContainer> <button className="twentypx margintop" onClick={calculateRoute}>Submit Routes</button></ButtonContainer>
 
         </>
     )
