@@ -98,7 +98,12 @@ const applyAlgorithm = (matrix) => {
 }
 
 //returns a list of directions that you will need to travel
-const getDirectionsList = (matrix, indicies) => {
+const getDirectionsList = (matrix, indices) => {
+    const directionList = []
+    for (let i =0; i<indices.length - 1; i++){
+        directionList.push(matrix[indices[i]][indices[i+1]]);
+    }
+    return directionList; 
 
 }
 
@@ -116,7 +121,7 @@ const findShortestRoute = async (req, res) => {
         for (let i=0; i< coordinateList.length; i++){
             for(let j=1; j<coordinateList.length; j++){
                 if(i == j){
-                    timeMatrix[i][j] = 100000; //a very large number
+                    timeMatrix[i][j] = Infinity; 
                     directionsMatrix = [];
                 }
                 else {
