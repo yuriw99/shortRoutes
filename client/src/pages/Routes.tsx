@@ -97,7 +97,8 @@ const FindRoutes = () => {
 
     const calculateRoute = async () => {
         try{
-            const response = await axios.post('http://localhost:5000/api/find-shortest-route', {locations, selectedOptions}); //not selectedOptions, need to change this
+            const optionsList = selectedOptions.forEach((option) => option.label);
+            const response = await axios.post('http://localhost:5000/api/find-shortest-route', {locations, optionsList}); 
             navigate("/results", {state: {locationList: response.data.locations, directions: response.data.directions, totalTime: response.data.totalTime}});
         }catch (error) {
             console.error(error);

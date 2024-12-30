@@ -13,7 +13,22 @@ const connectDB = async () => {
     }
 };
 
+const checkInfoDatabase = async (email) => {
+    try {
+        const query = { email: email };
+        const row = await User.findOne(query);
+        if (row) {
+            return true;
+        }
+        else {
+            return false;
+        }
 
+
+    } catch (error) {
+        console.log("error with check info database", error);
+    }
+}
 const sendInfoDatabase = async (email, password) => {
     try {
         const user = new User({
@@ -34,9 +49,13 @@ const addUser = async (req, res) => {
         const { email, password } = req.body;
         if (email != "initial email") {
             connectDB();
-            sendInfoDatabase(email, password);
+            if (checkInfoDatabase(email)) {
+                res.status(200).json({message: 'A user with that email already exists'});
+            } else {
+                sendInfoDatabase(email, password);
 
-            res.status(200).json({ message: 'User added successfully' });
+                res.status(200).json({ message: 'User added successfully' });
+            }
         } else {
             res.status(400).json({ message: "Tried to add 'initial email, not real email" })
         }
