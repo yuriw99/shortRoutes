@@ -57,8 +57,12 @@ const applyAlgorithm = (matrix) => {
 
 }
 
+const getDirectionsList = (matrix, indicies) => {
 
-const findShortestDistance = async (req, res) => {
+}
+
+
+const findShortestRoute = async (req, res) => {
     try {
         const {locationList, transportList} = req.body; // ["100 Church St", "124 Chambers Street"], ["Car"]
         const coordinateList = [];
@@ -82,8 +86,9 @@ const findShortestDistance = async (req, res) => {
             }
         }
         const indices = applyAlgorithm(timeMatrix);
-        const result = indices.map(index => locationList[index]);
-        res.status(200).json({data: result});
+        const locationsOrder = indices.map(index => locationList[index]);
+        const directionsOrder = getDirectionsList(directionsMatrix, indices)
+        res.status(200).json({locations: locationsOrder, directions: directionsOrder});
 
 
     } catch (error) {
@@ -91,3 +96,5 @@ const findShortestDistance = async (req, res) => {
         res.status(500).json({message: "failed distance matrix"})
     }
 }
+
+module.exports = {findShortestRoute};
