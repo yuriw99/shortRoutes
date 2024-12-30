@@ -1,4 +1,4 @@
-const axios = require('axios'); // Make sure axios is installed
+const axios = require('axios'); 
 const apiKey = '5b3ce3597851110001cf6248f6d6a55afe4c40258b0f62c243ffe143';
 
 const getCoordinate = async (location) => {
@@ -52,21 +52,42 @@ const getDistanceTwoPoints = async (location1, location2, travelMethod) => {
     }
 }
 
+//returns list of shortest distance nodes (for example [0, 1, 4, 2, 3])
+const applyAlgorithm = (matrix) => {
 
-
+}
 
 
 const findShortestDistance = async (req, res) => {
     try {
-        const {locationList, transportList} = req.body; // ["100 Church St", "124 Chambers Street"], ["Car", "Bus"]
+        const {locationList, transportList} = req.body; // ["100 Church St", "124 Chambers Street"], ["Car"]
         const coordinateList = [];
         for (let i=0; i<locationList.length; i++){
             let coordinate = getCoordinate(locationList[i]);
             coordinateList[i] = coordinate;
         }
+        const timeMatrix = null; 
+        const directionsMatrix = null;
+        for (let i=0; i< coordinateList.length; i++){
+            for(let j=1; j<coordinateList.length; j++){
+                if(i == j){
+                    timeMatrix[i][j] = 100000; //a very large number
+                    directionsMatrix = [];
+                }
+                else {
+                    time, directions = getDistanceTwoPoints(coordinateList[i], coordinateList[j], transportList[i]);
+                    timeMatrix[i][j] = time;
+                    directionsMatrix[i][j] = directions;
+                }
+            }
+        }
+        const indices = applyAlgorithm(timeMatrix);
+        const result = indices.map(index => locationList[index]);
+        res.status(200).json({data: result});
 
 
     } catch (error) {
-
+        console.log("findShortestDistance", error)
+        res.status(500).json({message: "failed distance matrix"})
     }
 }
