@@ -134,7 +134,7 @@ const findShortestRoute = async (req, res) => {
         const {time, indices} = applyAlgorithm(timeMatrix);
         const locationsOrder = indices.map(index => locationList[index]);
         const directionsOrder = getDirectionsList(directionsMatrix, indices)
-        res.status(200).json({locations: locationsOrder, directions: directionsOrder, totalTime: time});
+        res.status(200).json({indices: indices, locations: locationsOrder, directions: directionsOrder, totalTime: time});
 
 
     } catch (error) {

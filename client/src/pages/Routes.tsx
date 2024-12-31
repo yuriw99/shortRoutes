@@ -99,7 +99,7 @@ const FindRoutes = () => {
         try{
             const optionsList = selectedOptions.forEach((option) => option.label);
             const response = await axios.post('http://localhost:5000/api/find-shortest-route', {locations, optionsList}); 
-            navigate("/results", {state: {locationList: response.data.locations, directions: response.data.directions, totalTime: response.data.totalTime}});
+            navigate("/results", {state: {indexList: response.data.indices, locationList: response.data.locations, directions: response.data.directions, totalTime: response.data.totalTime}});
         }catch (error) {
             console.error(error);
         }
