@@ -1,5 +1,5 @@
 const axios = require('axios'); 
-const apiKey = '5b3ce3597851110001cf6248f6d6a55afe4c40258b0f62c243ffe143';
+const apiKey = process.env.API_KEY;
 
 const getCoordinate = async (location) => {
     location = location.replace(" ", "%20");  

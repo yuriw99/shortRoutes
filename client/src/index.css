@@ -26,6 +26,12 @@ button {
   padding-top: 3vh;
 }
 
+.redText {
+  color: #C32604;
+  font-family: Itim;
+  padding-top: 3vh;
+}
+
 .fortypx {
   font-size: 40px;
 }

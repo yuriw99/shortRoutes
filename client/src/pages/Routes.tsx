@@ -99,6 +99,7 @@ const FindRoutes = () => {
         try{
             const transportList = selectedOptions.map((option) => option.label);
             const response = await axios.post('http://localhost:5000/api/find-shortest-route', {locations, transportList}); 
+            console.log("this is results response in Routes.tsx", response.data)
             navigate("/results", {state: {indexList: response.data.indices, locationList: response.data.locations, directions: response.data.directions, totalTime: response.data.totalTime}});
         }catch (error) {
             console.error(error);
@@ -126,12 +127,12 @@ const FindRoutes = () => {
         <>
             <LocationStyle>
                 <div className="text">Starting Location</div>
-                <StyledInput placeholder="100 Church St New York, NY 10007" onChange={(e) => inputLocation(e.target.value, 0)} />
+                <StyledInput placeholder="100 Church St New York, NY" onChange={(e) => inputLocation(e.target.value, 0)} />
             </LocationStyle>
             {Array.from({ length: numLocations }, (_, index) => (
                 <LocationStyle key={index}>
                     <div className="text">Location {index + 1}</div>
-                    <StyledInput placeholder="100 Church St New York, NY 10007" onChange={(e) => inputLocation(e.target.value, index + 1)} />
+                    <StyledInput placeholder="100 Church St New York, NY" onChange={(e) => inputLocation(e.target.value, index + 1)} />
                     <Dropdown
                         controlClassName='myControlClassName'
                         menuClassName='myMenuClassName'
