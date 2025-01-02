@@ -36,14 +36,18 @@ const getTravelMethod = (travel) => {
 
 const getDistanceTwoPoints = async (location1, location2, travelMethod) => {
     travelMethod = getTravelMethod(travelMethod);
+    console.log(location1, location2)
+    const start = location1.join(','); 
+    const end = location2.join(','); 
     try{
-        const response = await axios.get(`https://api.openrouteservice.org/v2/directions/${travelMethod}?api_key=${apiKey}&start=${location1}&end=${location2}`, {
+        const response = await axios.get(`https://api.openrouteservice.org/v2/directions/${travelMethod}?api_key=${apiKey}&start=${start}&end=${end}`, {
             headers: {
                 'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8'
             }
         });
         const time = response.data.properties.summary.duration; // Duration in seconds
         const directions = response.data.features[0].properties.segments[0].steps; // Directions steps (if you need them)
+        console.log("RESPONSE IS", response.data)
         
         return { time, directions };
 
@@ -110,10 +114,10 @@ const getDirectionsList = (matrix, indices) => {
 
 const findShortestRoute = async (req, res) => {
     try {
-        const {locationList, transportList} = req.body; // ["100 Church St", "124 Chambers Street"], ["Car"]
+        const {locations, transportList} = req.body; // ["100 Church St", "124 Chambers Street"], ["Car"]
         const coordinateList = [];
-        for (let i=0; i<locationList.length; i++){
-            let coordinate = getCoordinate(locationList[i]);
+        for (let i=0; i<locations.length; i++){
+            let coordinate = await getCoordinate(locations[i]);
             coordinateList[i] = coordinate;
         }
         const timeMatrix = null; 
@@ -132,13 +136,13 @@ const findShortestRoute = async (req, res) => {
             }
         }
         const {time, indices} = applyAlgorithm(timeMatrix);
-        const locationsOrder = indices.map(index => locationList[index]);
+        const locationsOrder = indices.map(index => locations[index]);
         const directionsOrder = getDirectionsList(directionsMatrix, indices)
         res.status(200).json({indices: indices, locations: locationsOrder, directions: directionsOrder, totalTime: time});
 
 
     } catch (error) {
-        console.log("findShortestDistance", error)
+    //    console.log("findShortestDistance", error)
         res.status(500).json({message: "failed distance matrix"})
     }
 }
