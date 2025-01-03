@@ -61,7 +61,7 @@ const Results = () => {
   ))}
 </LocationContainer>
             <button>Click Here to Download Directions</button>
-            <div className="text twentypx">Estimated at {totalTime/3600 ? ( Math.floor(totalTime/3600) + " hours"): ""} {Math.floor(totalTime/60 - Math.floor(totalTime/3600)*60)} minutes</div>
+            <div className="text twentypx">Estimated at {Math.floor(totalTime/3600) ? ( Math.floor(totalTime/3600) + " hours"): ""} {Math.floor(totalTime/60 - Math.floor(totalTime/3600)*60)} minutes</div>
         </ResultsStyle>
     )
 }

@@ -59,46 +59,25 @@ const getDistanceTwoPoints = async (location1, location2, travelMethod) => {
 
 //returns list of shortest distance nodes (for example [0, 1, 4, 2, 3]) as well as the total time to get to all of these nodes
 const applyAlgorithm = (matrix) => {
-    console.log(matrix)
+    console.log("THE MATRIX IS", matrix)
     const n = matrix.length;
-    const distances = Array(n).fill(Infinity);  // Shortest distance to each node
-    const previous = Array(n).fill(null);  // To track the path
-    const visited = Array(n).fill(false);  // To track visited nodes
-    const pq = [];  // Priority queue
-
-    // Initialize the start node
-    distances[0] = 0;
-    pq.push([0, 0]);  // [distance, node]
-
-    while (pq.length > 0) {
-        // Sort priority queue based on distance (min-heap behavior)
-        pq.sort((a, b) => a[0] - b[0]);
-        const [currentDist, u] = pq.shift();  // Get the node with the shortest distance
-
-        if (visited[u]) continue;
-        visited[u] = true;
-
-        // Relax the edges
-        for (let v = 0; v < n; v++) {
-            if (matrix[u][v] !== Infinity && !visited[v]) {
-                const alt = currentDist + matrix[u][v];
-                if (alt < distances[v]) {
-                    distances[v] = alt;
-                    previous[v] = u;  // Track the previous node for path reconstruction
-                    pq.push([distances[v], v]);  // Add to the priority queue
-                }
+    const indices = [];
+    indices.push(0) //starting index
+    let time = 0;
+    let currRowIndex = 0;
+    while (indices.length < n){
+        let minVal = Infinity;
+        let minIndex = -1;
+        for (let i = 0; i<matrix[currRowIndex].length; i++){
+            if (matrix[currRowIndex][i] < minVal && indices.indexOf(i)==-1){
+                minVal = matrix[currRowIndex][i];
+                minIndex = i;
             }
         }
+        time += matrix[currRowIndex][minIndex];
+        indices.push(minIndex);
+        currRowIndex = minIndex;
     }
-
-    // Reconstruct the shortest path
-    const indices = [];
-    let current = n - 1;  // Target node (change this for different destinations)
-    while (current !== null) {
-        indices.unshift(current);
-        current = previous[current];
-    }
-    const time = distances[n - 1];
     
 
     return {time, indices};
