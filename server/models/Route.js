@@ -5,7 +5,7 @@ const RouteSchema = new Schema ({
     userEmail: String,
     routes: Array,
     directions: Array,
-    minutes: String
+    seconds: String
 })
 
 const Route = mongoose.model('Route', RouteSchema);
