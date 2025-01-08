@@ -98,6 +98,7 @@ const getDirectionsList = (matrix, indices) => {
 
 const addRouteInfoDatabase = async (userEmail, locations, directions, totalTime) => {
     try {
+        mongoose.disconnect();
         const connection2 = ""; //connection to routes database
         await mongoose.connect(connection2, { useNewUrlParser: true, useUnifiedTopology: true });
         const route = new Route({
