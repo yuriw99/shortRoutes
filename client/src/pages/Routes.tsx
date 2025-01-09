@@ -4,6 +4,7 @@ import Dropdown from 'react-dropdown';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { RootState } from '../redux/store';
+import BounceLoader from "react-spinners/BounceLoader";
 import axios from 'axios';
 import 'react-dropdown/style.css';
 import './Dropdown.css';
@@ -31,12 +32,9 @@ const StyledInput = styled.input`
     font-family: Itim;
     font-size: 1em; 
 }
-
     &:focus {
     border: 1px solid #C32604; 
 }
-
-
 `;
 
 
@@ -56,7 +54,17 @@ const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-`
+`;
+
+const LoadingOverlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2; 
+    background-color: rgba(0, 0, 0, 0.5); 
+`;
 
 interface Option {
     label: string;
@@ -67,6 +75,7 @@ const FindRoutes = () => {
     const [numLocations, setNumLocations] = useState(0);
     const [locations, setLocations] = useState<string[]>(["empty location"]);
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+    const [loading, setLoading] = useState(false);
     const userEmail = useSelector((state: RootState) => state.email);
     const navigate = useNavigate();
 
@@ -99,12 +108,12 @@ const FindRoutes = () => {
     };
 
     const calculateRoute = async () => {
-        try{
+        try {
+            setLoading(true);
             const transportList = selectedOptions.map((option) => option.label);
-            const response = await axios.post('http://localhost:5000/api/find-shortest-route', {userEmail, locations, transportList}); 
-            console.log("this is results response in Routes.tsx", response.data)
-            navigate("/results", {state: {indexList: response.data.indices, locationList: response.data.locations, directions: response.data.directions, totalTime: response.data.totalTime}});
-        }catch (error) {
+            const response = await axios.post('http://localhost:5000/api/find-shortest-route', { userEmail, locations, transportList });
+            navigate("/results", { state: { indexList: response.data.indices, locationList: response.data.locations, directions: response.data.directions, totalTime: response.data.totalTime } });
+        } catch (error) {
             console.error(error);
         }
     }
@@ -150,7 +159,17 @@ const FindRoutes = () => {
                 <LocationButton onClick={addALocation}>+</LocationButton>
             </ButtonContainer>
             <ButtonContainer> <button className="twentypx margintop" onClick={calculateRoute}>Submit Routes</button></ButtonContainer>
-
+            {
+                loading ? (
+                    <LoadingOverlay>
+                        <BounceLoader
+                            color="#C32604"
+                            loading={loading}
+                            size={100}
+                            aria-label="Loading Spinner"
+                            data-testid="loader" />
+                    </LoadingOverlay>) : <></>
+            }
         </>
     )
 }

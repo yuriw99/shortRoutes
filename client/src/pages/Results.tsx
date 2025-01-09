@@ -58,11 +58,11 @@ const Results = () => {
             <ul>
           `;
     
-          directions[i].steps.forEach((step : string, j: number) => {
-            dynamicContent += `<li>${j + 1}. ${step}</li>`;
+          directions[0][i].instructions.forEach((instruction : string, j: number) => {
+            dynamicContent += `<li>${j + 1}. ${instruction}</li>`;
           });
     
-          dynamicContent += '</ul>';
+          dynamicContent += '</ul> <br/>';
         }
     
         const pdfContent = `
