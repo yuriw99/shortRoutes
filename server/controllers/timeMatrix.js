@@ -144,9 +144,9 @@ const findShortestRoute = async (req, res) => {
             }
         }
         const { time, indices } = applyAlgorithm(timeMatrix);
-        console.log(time, indices)
         const locationsOrder = indices.map(index => locations[index]);
         const directionsOrder = getDirectionsList(directionsMatrix, indices)
+        // console.log("directions matrix is", JSON.stringify(directionsMatrix, null, 2));
         if (userEmail != "initial email"){
             await addRouteInfoDatabase(userEmail, locationsOrder, directionsOrder, time);
         }

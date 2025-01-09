@@ -68,7 +68,7 @@ const Header = () => {
                 <Element onClick={() => navigate("/login")}>
                     Login/Sign Up
                 </Element>) : ( <>
-                    <Element> MyRoutes </Element>
+                    <Element onClick={() => navigate("/myRoutes")}> MyRoutes </Element>
                     <Element onClick={logout}>
                         Logout
                     </Element></>

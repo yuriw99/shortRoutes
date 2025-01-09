@@ -67,6 +67,7 @@ const FindRoutes = () => {
     const [numLocations, setNumLocations] = useState(0);
     const [locations, setLocations] = useState<string[]>(["empty location"]);
     const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
+    const userEmail = useSelector((state: RootState) => state.email);
     const navigate = useNavigate();
 
     const options: Option[] = [
@@ -100,8 +101,7 @@ const FindRoutes = () => {
     const calculateRoute = async () => {
         try{
             const transportList = selectedOptions.map((option) => option.label);
-            const userEmail = useSelector((state: RootState) => state.email);
-            const response = await axios.post('http://localhost:5000/api/find-shortest-route', {locations, transportList}); 
+            const response = await axios.post('http://localhost:5000/api/find-shortest-route', {userEmail, locations, transportList}); 
             console.log("this is results response in Routes.tsx", response.data)
             navigate("/results", {state: {indexList: response.data.indices, locationList: response.data.locations, directions: response.data.directions, totalTime: response.data.totalTime}});
         }catch (error) {
