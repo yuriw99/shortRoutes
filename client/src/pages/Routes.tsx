@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Dropdown from 'react-dropdown';
 import { useNavigate } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { RootState } from '../redux/store';
 import axios from 'axios';
 import 'react-dropdown/style.css';
 import './Dropdown.css';
@@ -98,6 +100,7 @@ const FindRoutes = () => {
     const calculateRoute = async () => {
         try{
             const transportList = selectedOptions.map((option) => option.label);
+            const userEmail = useSelector((state: RootState) => state.email);
             const response = await axios.post('http://localhost:5000/api/find-shortest-route', {locations, transportList}); 
             console.log("this is results response in Routes.tsx", response.data)
             navigate("/results", {state: {indexList: response.data.indices, locationList: response.data.locations, directions: response.data.directions, totalTime: response.data.totalTime}});

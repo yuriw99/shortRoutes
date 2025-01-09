@@ -99,7 +99,7 @@ const getDirectionsList = (matrix, indices) => {
 const addRouteInfoDatabase = async (userEmail, locations, directions, totalTime) => {
     try {
         mongoose.disconnect();
-        const connection2 = ""; //connection to routes database
+        const connection2 = "mongodb+srv://yuriw:TUr9QMmVjl5Upsk8@shortroutesusers.d6kud.mongodb.net/Routes?retryWrites=true&w=majority&appName=ShortRoutesUsers"; //connection to routes database
         await mongoose.connect(connection2, { useNewUrlParser: true, useUnifiedTopology: true });
         const route = new Route({
             userEmail: userEmail,
@@ -108,9 +108,10 @@ const addRouteInfoDatabase = async (userEmail, locations, directions, totalTime)
             seconds: totalTime
         });
         const result = route.save();
+        console.log(result); 
     }
     catch (error) {
-
+        console.log(error)
     }
 
 
@@ -119,7 +120,7 @@ const addRouteInfoDatabase = async (userEmail, locations, directions, totalTime)
 
 const findShortestRoute = async (req, res) => {
     try {
-        const { locations, transportList } = req.body; // ["100 Church St", "124 Chambers Street"], ["Car"]
+        const { userEmail, locations, transportList } = req.body; // ["100 Church St", "124 Chambers Street"], ["Car"]
         const coordinateList = [];
         for (let i = 0; i < locations.length; i++) {
             let coordinate = await getCoordinate(locations[i]);
@@ -146,6 +147,9 @@ const findShortestRoute = async (req, res) => {
         console.log(time, indices)
         const locationsOrder = indices.map(index => locations[index]);
         const directionsOrder = getDirectionsList(directionsMatrix, indices)
+        if (userEmail != "initial email"){
+            await addRouteInfoDatabase(userEmail, locationsOrder, directionsOrder, time);
+        }
         res.status(200).json({ indices: indices, locations: locationsOrder, directions: directionsOrder, totalTime: time });
 
 
