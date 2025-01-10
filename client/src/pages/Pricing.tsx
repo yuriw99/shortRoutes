@@ -56,7 +56,7 @@ const Pricing = () => {
                     <div className="text twentypx">$5/month</div>
                     <br />
                     <PriceBox>
-                        <ul><li>20 attempts every month</li>
+                        <ul><li>50 attempts every month</li>
                             <br />
                             <li>Can input up to 15 locations</li>
                             <br />
@@ -69,7 +69,7 @@ const Pricing = () => {
                     <div className="text twentypx">$10/month</div>
                     <br />
                     <PriceBox>
-                        <ul><li>Unlimited attempts every month</li>
+                        <ul><li>200 attempts every month</li>
                             <br />
                             <li>Can input up to 20 locations</li>
                             <br />

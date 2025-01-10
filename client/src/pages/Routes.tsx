@@ -112,13 +112,32 @@ const FindRoutes = () => {
         setSelectedOptions(updatedOptions);
     };
 
+    const checkInputsFilled = () => {
+        for (let i=0; i<locations.length; i++){
+            let location = document.getElementById(`input${i}`) as HTMLInputElement | null;
+            if(location && location.value==""){
+                location.style.border = "2px solid red";
+                setTimeout(() => {  
+                    alert("Please fill out all location inputs!");
+                }, 0);
+                return false;
+            }
+            else if (location){
+                location.style.border = " 1px solid #FF6A49";
+            }
+        }
+        return true;
+    }
+
     const calculateRoute = async () => {
         try {
+           if(checkInputsFilled()){
             setLoading(true);
             const transportList = selectedOptions.map((option) => option.label);
             const response = await axios.post('http://localhost:5000/api/find-shortest-route', { userEmail, locations, transportList });
             setLoading(false);
             navigate("/results", { state: { indexList: response.data.indices, locationList: response.data.locations, directions: response.data.directions, totalTime: response.data.totalTime } });
+           }
         } catch (error) {
             setLoading(false);
             alert("Cannot connect. Please try again")
@@ -147,12 +166,12 @@ const FindRoutes = () => {
         <>
             <LocationStyle>
                 <div className="text">Starting Location</div>
-                <StyledInput placeholder="100 Church St New York, NY" onChange={(e) => inputLocation(e.target.value, 0)} />
+                <StyledInput placeholder="100 Church St New York, NY" id="input0" onChange={(e) => inputLocation(e.target.value, 0)} />
             </LocationStyle>
             {Array.from({ length: numLocations }, (_, index) => (
                 <LocationStyle key={index}>
                     <div className="text">Location {index + 1}</div>
-                    <StyledInput placeholder="100 Church St New York, NY" onChange={(e) => inputLocation(e.target.value, index + 1)} />
+                    <StyledInput placeholder="100 Church St New York, NY" id={`input${index + 1}`} onChange={(e) => inputLocation(e.target.value, index + 1)} />
                     <Dropdown
                         controlClassName='myControlClassName'
                         menuClassName='myMenuClassName'

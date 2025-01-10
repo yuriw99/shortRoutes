@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Route = require('../models/Route');
 
 const getCoordinate = async (location) => {
-    location = location.replace(" ", "%20");
+    location = location.replaceAll(" ", "%20");
 
     try {
         const response = await axios.get(`https://api.openrouteservice.org/geocode/search?api_key=${apiKey}&text=${location}`, {
