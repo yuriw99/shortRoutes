@@ -63,7 +63,12 @@ const LoadingOverlay = styled.div`
     width: 100%;
     height: 100%;
     z-index: 2; 
-    background-color: rgba(0, 0, 0, 0.5); 
+    background-color: rgba(0, 0, 0, 0.75); 
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `;
 
 interface Option {
@@ -112,8 +117,11 @@ const FindRoutes = () => {
             setLoading(true);
             const transportList = selectedOptions.map((option) => option.label);
             const response = await axios.post('http://localhost:5000/api/find-shortest-route', { userEmail, locations, transportList });
+            setLoading(false);
             navigate("/results", { state: { indexList: response.data.indices, locationList: response.data.locations, directions: response.data.directions, totalTime: response.data.totalTime } });
         } catch (error) {
+            setLoading(false);
+            alert("Cannot connect. Please try again")
             console.error(error);
         }
     }
@@ -162,12 +170,14 @@ const FindRoutes = () => {
             {
                 loading ? (
                     <LoadingOverlay>
+                        <div className="text fortypx marginbottom">Calculating Routes...</div>
                         <BounceLoader
                             color="#C32604"
                             loading={loading}
                             size={100}
                             aria-label="Loading Spinner"
                             data-testid="loader" />
+                            <div className="text twentypx margintop">This can take ~1 minute...</div>
                     </LoadingOverlay>) : <></>
             }
         </>
