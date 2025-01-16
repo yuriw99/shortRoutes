@@ -22,6 +22,7 @@ try {
         return res.status(200).json({ message: 'User not found' });
     }
     if (user.password == password) {
+        req.session.user = { email, password };
         return res.status(200).json({ message: 'this is the correct user' });
     }
     else {

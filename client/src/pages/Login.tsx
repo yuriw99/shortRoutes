@@ -55,7 +55,7 @@ const Login = () => {
 
     const login = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/api/login-user', { email, password });
+            const response = await axios.post('http://localhost:5000/api/login-user', { email, password }, {withCredentials: true});
             if(response.data.message === 'this is the correct user'){
                 dispatch(setAllPagePassword(password));
                 dispatch(setAllPageEmail(email));

@@ -161,12 +161,13 @@ const FindRoutes = () => {
         }
 
     }
+    
 
     return (
         <>
             <LocationStyle>
                 <div className="text">Starting Location</div>
-                <StyledInput placeholder="100 Church St New York, NY" id="input0" onChange={(e) => inputLocation(e.target.value, 0)} />
+                <StyledInput list="locations" placeholder="100 Church St New York, NY" id="input0" onChange={(e) => inputLocation(e.target.value, 0)} />
             </LocationStyle>
             {Array.from({ length: numLocations }, (_, index) => (
                 <LocationStyle key={index}>
@@ -182,6 +183,7 @@ const FindRoutes = () => {
                     />
                 </LocationStyle>
             ))}
+            
             <ButtonContainer>
                 <LocationButton onClick={addALocation}>+</LocationButton>
             </ButtonContainer>

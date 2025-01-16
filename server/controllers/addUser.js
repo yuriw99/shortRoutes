@@ -53,7 +53,7 @@ const addUser = async (req, res) => {
                 res.status(200).json({message: 'A user with that email already exists'});
             } else {
                 sendInfoDatabase(email, password);
-
+                req.session.user = { email, password };
                 res.status(200).json({ message: 'User added successfully' });
             }
         } else {
