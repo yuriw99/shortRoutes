@@ -31,6 +31,16 @@ app.get('/', (req, res) => {
     res.send('Server is running!');
 });
 
+app.get('/user', (req, res) => {
+    console.log(req.session);
+    if (req.session.user){
+        return res.status(200).json({email: req.session.user.email, password: req.session.user.password});
+    }else {
+        return res.status(401).json({ message: "Unauthorized" });
+    }
+    
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
