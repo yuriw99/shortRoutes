@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from './components/Header';
 import MainPage from './pages/Main';
 import LoginPage from './pages/Login';
@@ -12,11 +12,30 @@ import RoutesListPage from './pages/RoutesList';
 import ResultsPage from './pages/Results';
 import ForgetPasswordPage from './pages/ForgetPassword'; 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from './redux/store';
+import { setAllPageEmail, setAllPagePassword } from './redux/reducers';
+import axios from 'axios';
 import './App.css';
 
 
 
 function App() {
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const getUserInfo = async () => {
+    const response = await axios.get('http://localhost:5000/user');
+    if (response.data.email && response.data.password){
+        dispatch(setAllPagePassword(response.data.password));
+        dispatch(setAllPageEmail(response.data.email));
+    }
+  }
+
+  useEffect(() => {
+          getUserInfo();
+      }, []);
+
   return (
     <Router>
       <>
