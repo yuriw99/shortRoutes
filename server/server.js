@@ -4,6 +4,7 @@ const session = require('express-session');
 const emailRoutes = require('./routes/emailRoutes');
 const userRoutes = require('./routes/addUserRoutes');
 const shortRoutes = require('./routes/findShortestRoute');
+const routeRoutes = require('./routes/routeRoutes');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 
@@ -34,6 +35,7 @@ app.use(session({
 app.use('/api', emailRoutes);
 app.use('/api', userRoutes);
 app.use('/api', shortRoutes); 
+app.use('/api', routeRoutes)
 
 app.get('/', (req, res) => {
     res.send('Server is running!');

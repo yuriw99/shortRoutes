@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import html2pdf from 'html2pdf.js';
 import { useLocation } from 'react-router-dom';
@@ -83,6 +83,11 @@ const Results = () => {
             
           });
       };
+
+      useEffect(() => {
+        // save route information into database
+                
+            }, []);
     
 
     return (
