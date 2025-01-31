@@ -57,10 +57,10 @@ const Results = () => {
             <h3>From ${locationList[i]} to ${locationList[i + 1]}</h3>
             <ul>
           `;
-    
-          directions[0][i].instructions.forEach((instruction : string, j: number) => {
-            dynamicContent += `<li>${j + 1}. ${instruction}</li>`;
-          });
+          for (let j=0; j < directions[i].length; j ++){
+          dynamicContent += `<li> ${j} . ${directions[i][j].instruction} </li>`
+          console.log(directions[i][j])
+        }
     
           dynamicContent += '</ul> <br/>';
         }
