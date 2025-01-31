@@ -25,11 +25,15 @@ function App() {
   const dispatch = useDispatch<AppDispatch>();
 
   const getUserInfo = async () => {
-    const response = await axios.get('http://localhost:5000/user');
+    try {
+    const response = await axios.get('http://localhost:5000/user', {withCredentials: true});
     if (response.data.email && response.data.password){
         dispatch(setAllPagePassword(response.data.password));
         dispatch(setAllPageEmail(response.data.email));
     }
+  } catch(error){
+    console.log(error)
+  }
   }
 
   useEffect(() => {

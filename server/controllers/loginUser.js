@@ -23,12 +23,19 @@ try {
     }
     if (user.password == password) {
         req.session.user = { email, password };
+        req.session.save((err) => {
+            if (err) {
+                console.error("Session save error:", err);
+            }
+            console.log("Session saved:", req.session);
+        });
         return res.status(200).json({ message: 'this is the correct user' });
     }
     else {
         return res.status(200).json({ message: 'incorrect password' });
     }
 } catch(error){
+    console.log(error)
     return res.status(200).json({message: 'cannot connect'});
 }
 

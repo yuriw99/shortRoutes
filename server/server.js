@@ -5,11 +5,19 @@ const emailRoutes = require('./routes/emailRoutes');
 const userRoutes = require('./routes/addUserRoutes');
 const shortRoutes = require('./routes/findShortestRoute');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+
 
 const app = express();
 const PORT = 5000;
 
-app.use(cors());
+app.use(
+    cors({
+      origin: "http://localhost:3000", 
+      credentials: true, 
+    })
+  );
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
